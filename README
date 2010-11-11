@@ -1,5 +1,21 @@
 About JCAdSupportedNavigationController
 
-iOS 4.2 changes: 
+Developed by Jesse Collis jesse@jcmultimedia.com.au
+
+
+iOS 4.2 changes, don't work on iOS 4.1
+
 	ADBannerView: ADBannerContentSizeIdentifier320x50 is deprecated, please use ADBannerContentSizeIdentifierPortrait instead
 	ADBannerView: ADBannerContentSizeIdentifier480x32 is deprecated, please use ADBannerContentSizeIdentifierLandscape instead
+	
+	- (NSString*)portraitIdentifier
+	{
+	if(&ADBannerContentSizeIdentifierPortrait != nil)
+	{
+	return ADBannerContentSizeIdentifierPortrait;
+	}
+	else
+	{
+	return ADBannerContentSizeIdentifier320x50;
+	}
+	

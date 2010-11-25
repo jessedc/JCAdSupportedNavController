@@ -19,6 +19,7 @@
 		28D3F202112F7DC200FD0661 /* adNavController.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* adNavController.xcdatamodeld */; };
 		8822110112896BE4009F3E99 /* JCAdSupportedNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */; };
 		8822111112896CC0009F3E99 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8822111012896CC0009F3E99 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		88D3F174128BCBC700FAADF6 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D3F173128BCBC700FAADF6 /* SecondViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,9 +37,11 @@
 		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		882210FF12896BE4009F3E99 /* JCAdSupportedNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCAdSupportedNavController.h; sourceTree = "<group>"; };
-		8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCAdSupportedNavController.m; sourceTree = "<group>"; };
+		882210FF12896BE4009F3E99 /* JCAdSupportedNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JCAdSupportedNavController.h; path = Classes/JCAdSupportedNavController.h; sourceTree = "<group>"; };
+		8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCAdSupportedNavController.m; path = Classes/JCAdSupportedNavController.m; sourceTree = "<group>"; };
 		8822111012896CC0009F3E99 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		88D3F172128BCBC700FAADF6 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		88D3F173128BCBC700FAADF6 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* adNavController-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "adNavController-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,12 +64,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				882210FF12896BE4009F3E99 /* JCAdSupportedNavController.h */,
-				8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* adNavControllerAppDelegate.h */,
 				1D3623250D0F684500981E51 /* adNavControllerAppDelegate.m */,
+				88D3F172128BCBC700FAADF6 /* SecondViewController.h */,
+				88D3F173128BCBC700FAADF6 /* SecondViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -82,6 +85,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				882210FF12896BE4009F3E99 /* JCAdSupportedNavController.h */,
+				8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -190,6 +195,7 @@
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				28D3F202112F7DC200FD0661 /* adNavController.xcdatamodeld in Sources */,
 				8822110112896BE4009F3E99 /* JCAdSupportedNavController.m in Sources */,
+				88D3F174128BCBC700FAADF6 /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +211,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = adNavController_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "adNavController-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;

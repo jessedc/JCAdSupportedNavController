@@ -17,11 +17,21 @@
 	[super loadView];
 	
 	if (NSClassFromString(@"ADBannerView")) {
-		
 		// Setup AdView
 		adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, 0, 0)]; //put off the end of the view's bounds.
-		adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
-		adView.requiredContentSizeIdentifiers = [NSSet setWithObjects: ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];
+		
+		// ADBannerContentSizeIdentifier320x50 and ADBannerContentSizeIdentifier480x32 are deprecated in iOS 4.2
+		// To make things work into the future, we will use them if we notice they're available.
+		// This also prevents ugly deprecated messages too.
+		
+		if (&ADBannerContentSizeIdentifierPortrait != nil && &ADBannerContentSizeIdentifierLandscape != nil) {
+			adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+			adView.requiredContentSizeIdentifiers = [NSSet setWithObjects: ADBannerContentSizeIdentifierPortrait, ADBannerContentSizeIdentifierLandscape, nil];
+		}else{
+			adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+			adView.requiredContentSizeIdentifiers = [NSSet setWithObjects: ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];			
+		}
+		
 		adView.delegate = self;
 		adView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
 		
@@ -50,8 +60,9 @@
 	NSLog(@"Banner Did Finish Load");
 }
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-	NSLog(@"bannerView did fail code: %@ reason: %@",[[error userInfo] objectForKey:ADInternalErrorCode],[[error userInfo] objectForKey:NSLocalizedFailureReason]);
-	[self hideAdBanner];
+	NSLog(@"bannerView did fail %@",[error userInfo]);
+	//Because demo isn't really working;
+	[self hideAdBanner];	
 }
 
 -(void)showAdBanner{
@@ -105,19 +116,35 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration 
 {
     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)){
-        adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier480x32;
-	} else{
-		adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;
+		if (&ADBannerContentSizeIdentifierLandscape != nil) {
+			adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
+		}else {
+			adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier480x32;
+		}
+	}else{
+		if (&ADBannerContentSizeIdentifierPortrait != nil) {
+			adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+		}else{
+			adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifier320x50;	
+		}
+		
 	}
 }
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {	
+	// This code will alter the content view 
 	if(self.adBannerIsVisible ) {
 		int delta = 18;
-		if (adView.currentContentSizeIdentifier == ADBannerContentSizeIdentifier320x50) {
-			delta *= -1;
-		}
-	
+		if (&ADBannerContentSizeIdentifierPortrait != nil && &ADBannerContentSizeIdentifierLandscape != nil) {
+			if (adView.currentContentSizeIdentifier == ADBannerContentSizeIdentifierPortrait) {
+				delta *= -1;
+			}
+		}else {
+			if (adView.currentContentSizeIdentifier == ADBannerContentSizeIdentifier320x50) {
+				delta *= -1;
+			}
+		}		
+		// Not 100% sure if this is a documented way to get the container view for the navigationController, but it works in limited tests.
 		UIView *contentView = [self.view.subviews objectAtIndex:0];
 		CGRect originalViewFrame = contentView.frame;
 		originalViewFrame.size.height = originalViewFrame.size.height + delta;

@@ -44,7 +44,7 @@
 #define iAdDelegate Callbacks
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-	NSLog(@"Banner Did Load");
+	DLog(@"Banner Did Load");
 	[self showAdBanner];
 }
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
@@ -57,11 +57,10 @@
     return shouldExecuteAction;
 }
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner{
-	NSLog(@"Banner Did Finish Load");
+	DLog(@"Banner Did Finish Load");
 }
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-	NSLog(@"bannerView did fail %@",[error userInfo]);
-	//Because demo isn't really working;
+	DLog(@"bannerView did fail %@",[error userInfo]);
 	[self hideAdBanner];	
 }
 

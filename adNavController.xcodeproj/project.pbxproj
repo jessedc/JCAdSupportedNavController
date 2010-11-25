@@ -19,6 +19,8 @@
 		28D3F202112F7DC200FD0661 /* adNavController.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* adNavController.xcdatamodeld */; };
 		8822110112896BE4009F3E99 /* JCAdSupportedNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */; };
 		8822111112896CC0009F3E99 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8822111012896CC0009F3E99 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		88842897129E262E003C685F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88842895129E262E003C685F /* Icon.png */; };
+		88842898129E262E003C685F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88842896129E262E003C685F /* Icon@2x.png */; };
 		88D3F174128BCBC700FAADF6 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D3F173128BCBC700FAADF6 /* SecondViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		882210FF12896BE4009F3E99 /* JCAdSupportedNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JCAdSupportedNavController.h; path = Classes/JCAdSupportedNavController.h; sourceTree = "<group>"; };
 		8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCAdSupportedNavController.m; path = Classes/JCAdSupportedNavController.m; sourceTree = "<group>"; };
 		8822111012896CC0009F3E99 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		88842895129E262E003C685F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		88842896129E262E003C685F /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		88D3F172128BCBC700FAADF6 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		88D3F173128BCBC700FAADF6 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* adNavController-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "adNavController-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88842895129E262E003C685F /* Icon.png */,
+				88842896129E262E003C685F /* Icon@2x.png */,
 				28D3F201112F7DC200FD0661 /* adNavController.xcdatamodeld */,
 				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
@@ -180,6 +186,8 @@
 			files = (
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */,
+				88842897129E262E003C685F /* Icon.png in Resources */,
+				88842898129E262E003C685F /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

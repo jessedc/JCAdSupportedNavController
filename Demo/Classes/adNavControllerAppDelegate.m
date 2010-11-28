@@ -142,8 +142,9 @@
     if (persistentStoreCoordinator_ != nil) {
         return persistentStoreCoordinator_;
     }
-    
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"adNavController.sqlite"];
+	
+	NSString *storePath = [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"adNavController.sqlite"];
+	NSURL *storeURL		= [NSURL fileURLWithPath:storePath];
     
     NSError *error = nil;
     persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -185,8 +186,10 @@
 /**
  Returns the URL to the application's Documents directory.
  */
-- (NSURL *)applicationDocumentsDirectory {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+- (NSString *)applicationDocumentsDirectory {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
 }
 
 

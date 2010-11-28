@@ -17,10 +17,25 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28D3F202112F7DC200FD0661 /* adNavController.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* adNavController.xcdatamodeld */; };
-		8822110112896BE4009F3E99 /* JCAdSupportedNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */; };
 		8822111112896CC0009F3E99 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8822111012896CC0009F3E99 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		88842897129E262E003C685F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 88842895129E262E003C685F /* Icon.png */; };
 		88842898129E262E003C685F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88842896129E262E003C685F /* Icon@2x.png */; };
+		888428AE129E273B003C685F /* libAdMob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 888428AD129E273B003C685F /* libAdMob.a */; };
+		888428BB129E2765003C685F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888428BA129E2765003C685F /* AudioToolbox.framework */; };
+		888428BF129E2778003C685F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888428BE129E2778003C685F /* MediaPlayer.framework */; };
+		888428C3129E2785003C685F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888428C2129E2785003C685F /* MessageUI.framework */; };
+		888428C7129E278D003C685F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888428C6129E278D003C685F /* QuartzCore.framework */; };
+		888428E1129E2845003C685F /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428CC129E2845003C685F /* CDataScanner.m */; };
+		888428E2129E2845003C685F /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428CF129E2845003C685F /* CDataScanner_Extensions.m */; };
+		888428E3129E2845003C685F /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428D1129E2845003C685F /* NSCharacterSet_Extensions.m */; };
+		888428E4129E2845003C685F /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428D3129E2845003C685F /* NSDictionary_JSONExtensions.m */; };
+		888428E5129E2845003C685F /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428D5129E2845003C685F /* NSScanner_Extensions.m */; };
+		888428E6129E2845003C685F /* CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428D8129E2845003C685F /* CJSONDataSerializer.m */; };
+		888428E7129E2845003C685F /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428DA129E2845003C685F /* CJSONDeserializer.m */; };
+		888428E8129E2845003C685F /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428DC129E2845003C685F /* CJSONScanner.m */; };
+		888428E9129E2845003C685F /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428DE129E2845003C685F /* CJSONSerializer.m */; };
+		888428EA129E2845003C685F /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 888428E0129E2845003C685F /* CSerializedJSONData.m */; };
+		88ADB6E412A2123E00862942 /* JCAdSupportedNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88ADB6E312A2123E00862942 /* JCAdSupportedNavController.m */; };
 		88D3F174128BCBC700FAADF6 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D3F173128BCBC700FAADF6 /* SecondViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -39,11 +54,40 @@
 		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		882210FF12896BE4009F3E99 /* JCAdSupportedNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JCAdSupportedNavController.h; path = Classes/JCAdSupportedNavController.h; sourceTree = "<group>"; };
-		8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCAdSupportedNavController.m; path = Classes/JCAdSupportedNavController.m; sourceTree = "<group>"; };
 		8822111012896CC0009F3E99 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		88842895129E262E003C685F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		88842896129E262E003C685F /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		888428A9129E273A003C685F /* AdMobDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobDelegateProtocol.h; sourceTree = "<group>"; };
+		888428AA129E273A003C685F /* AdMobInterstitialAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobInterstitialAd.h; sourceTree = "<group>"; };
+		888428AB129E273A003C685F /* AdMobInterstitialDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobInterstitialDelegateProtocol.h; sourceTree = "<group>"; };
+		888428AC129E273A003C685F /* AdMobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobView.h; sourceTree = "<group>"; };
+		888428AD129E273B003C685F /* libAdMob.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdMob.a; sourceTree = "<group>"; };
+		888428BA129E2765003C685F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		888428BE129E2778003C685F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		888428C2129E2785003C685F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		888428C6129E278D003C685F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		888428CB129E2845003C685F /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
+		888428CC129E2845003C685F /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
+		888428CE129E2845003C685F /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		888428CF129E2845003C685F /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		888428D0129E2845003C685F /* NSCharacterSet_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSCharacterSet_Extensions.h; sourceTree = "<group>"; };
+		888428D1129E2845003C685F /* NSCharacterSet_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSCharacterSet_Extensions.m; sourceTree = "<group>"; };
+		888428D2129E2845003C685F /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		888428D3129E2845003C685F /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		888428D4129E2845003C685F /* NSScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSScanner_Extensions.h; sourceTree = "<group>"; };
+		888428D5129E2845003C685F /* NSScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSScanner_Extensions.m; sourceTree = "<group>"; };
+		888428D7129E2845003C685F /* CJSONDataSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDataSerializer.h; sourceTree = "<group>"; };
+		888428D8129E2845003C685F /* CJSONDataSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDataSerializer.m; sourceTree = "<group>"; };
+		888428D9129E2845003C685F /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		888428DA129E2845003C685F /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		888428DB129E2845003C685F /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		888428DC129E2845003C685F /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		888428DD129E2845003C685F /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		888428DE129E2845003C685F /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		888428DF129E2845003C685F /* CSerializedJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSerializedJSONData.h; sourceTree = "<group>"; };
+		888428E0129E2845003C685F /* CSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSerializedJSONData.m; sourceTree = "<group>"; };
+		88ADB6E212A2123E00862942 /* JCAdSupportedNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JCAdSupportedNavController.h; path = ../JCAdSupportedNavController.h; sourceTree = SOURCE_ROOT; };
+		88ADB6E312A2123E00862942 /* JCAdSupportedNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JCAdSupportedNavController.m; path = ../JCAdSupportedNavController.m; sourceTree = SOURCE_ROOT; };
 		88D3F172128BCBC700FAADF6 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		88D3F173128BCBC700FAADF6 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* adNavController-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "adNavController-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -59,6 +103,11 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */,
 				8822111112896CC0009F3E99 /* iAd.framework in Frameworks */,
+				888428AE129E273B003C685F /* libAdMob.a in Frameworks */,
+				888428BB129E2765003C685F /* AudioToolbox.framework in Frameworks */,
+				888428BF129E2778003C685F /* MediaPlayer.framework in Frameworks */,
+				888428C3129E2785003C685F /* MessageUI.framework in Frameworks */,
+				888428C7129E278D003C685F /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,8 +138,10 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				882210FF12896BE4009F3E99 /* JCAdSupportedNavController.h */,
-				8822110012896BE4009F3E99 /* JCAdSupportedNavController.m */,
+				88ADB6E212A2123E00862942 /* JCAdSupportedNavController.h */,
+				88ADB6E312A2123E00862942 /* JCAdSupportedNavController.m */,
+				888428CA129E2845003C685F /* TouchJSON */,
+				888428A8129E273A003C685F /* AdMob */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -130,8 +181,67 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				28860BE40F44EE6400985440 /* CoreData.framework */,
 				8822111012896CC0009F3E99 /* iAd.framework */,
+				888428BA129E2765003C685F /* AudioToolbox.framework */,
+				888428BE129E2778003C685F /* MediaPlayer.framework */,
+				888428C2129E2785003C685F /* MessageUI.framework */,
+				888428C6129E278D003C685F /* QuartzCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		888428A8129E273A003C685F /* AdMob */ = {
+			isa = PBXGroup;
+			children = (
+				888428A9129E273A003C685F /* AdMobDelegateProtocol.h */,
+				888428AA129E273A003C685F /* AdMobInterstitialAd.h */,
+				888428AB129E273A003C685F /* AdMobInterstitialDelegateProtocol.h */,
+				888428AC129E273A003C685F /* AdMobView.h */,
+				888428AD129E273B003C685F /* libAdMob.a */,
+			);
+			path = AdMob;
+			sourceTree = "<group>";
+		};
+		888428CA129E2845003C685F /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				888428CB129E2845003C685F /* CDataScanner.h */,
+				888428CC129E2845003C685F /* CDataScanner.m */,
+				888428CD129E2845003C685F /* Extensions */,
+				888428D6129E2845003C685F /* JSON */,
+			);
+			path = TouchJSON;
+			sourceTree = "<group>";
+		};
+		888428CD129E2845003C685F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				888428CE129E2845003C685F /* CDataScanner_Extensions.h */,
+				888428CF129E2845003C685F /* CDataScanner_Extensions.m */,
+				888428D0129E2845003C685F /* NSCharacterSet_Extensions.h */,
+				888428D1129E2845003C685F /* NSCharacterSet_Extensions.m */,
+				888428D2129E2845003C685F /* NSDictionary_JSONExtensions.h */,
+				888428D3129E2845003C685F /* NSDictionary_JSONExtensions.m */,
+				888428D4129E2845003C685F /* NSScanner_Extensions.h */,
+				888428D5129E2845003C685F /* NSScanner_Extensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		888428D6129E2845003C685F /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				888428D7129E2845003C685F /* CJSONDataSerializer.h */,
+				888428D8129E2845003C685F /* CJSONDataSerializer.m */,
+				888428D9129E2845003C685F /* CJSONDeserializer.h */,
+				888428DA129E2845003C685F /* CJSONDeserializer.m */,
+				888428DB129E2845003C685F /* CJSONScanner.h */,
+				888428DC129E2845003C685F /* CJSONScanner.m */,
+				888428DD129E2845003C685F /* CJSONSerializer.h */,
+				888428DE129E2845003C685F /* CJSONSerializer.m */,
+				888428DF129E2845003C685F /* CSerializedJSONData.h */,
+				888428E0129E2845003C685F /* CSerializedJSONData.m */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,8 +312,18 @@
 				1D3623260D0F684500981E51 /* adNavControllerAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				28D3F202112F7DC200FD0661 /* adNavController.xcdatamodeld in Sources */,
-				8822110112896BE4009F3E99 /* JCAdSupportedNavController.m in Sources */,
 				88D3F174128BCBC700FAADF6 /* SecondViewController.m in Sources */,
+				888428E1129E2845003C685F /* CDataScanner.m in Sources */,
+				888428E2129E2845003C685F /* CDataScanner_Extensions.m in Sources */,
+				888428E3129E2845003C685F /* NSCharacterSet_Extensions.m in Sources */,
+				888428E4129E2845003C685F /* NSDictionary_JSONExtensions.m in Sources */,
+				888428E5129E2845003C685F /* NSScanner_Extensions.m in Sources */,
+				888428E6129E2845003C685F /* CJSONDataSerializer.m in Sources */,
+				888428E7129E2845003C685F /* CJSONDeserializer.m in Sources */,
+				888428E8129E2845003C685F /* CJSONScanner.m in Sources */,
+				888428E9129E2845003C685F /* CJSONSerializer.m in Sources */,
+				888428EA129E2845003C685F /* CSerializedJSONData.m in Sources */,
+				88ADB6E412A2123E00862942 /* JCAdSupportedNavController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +343,10 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "adNavController-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/AdMob\"",
+				);
 				PRODUCT_NAME = adNavController;
 			};
 			name = Debug;
@@ -237,6 +361,10 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "adNavController-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/AdMob\"",
+				);
 				PRODUCT_NAME = adNavController;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -248,8 +376,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};

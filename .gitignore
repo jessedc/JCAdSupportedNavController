@@ -5,7 +5,9 @@
 *.perspectivev3
 *.pyc 
 *~.nib/
-build/*
+Demo/build/*
+Demo/AdMob/*
+Demo/TouchJSON/*
 
 # old skool
 .svn

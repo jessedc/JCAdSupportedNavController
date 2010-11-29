@@ -30,6 +30,7 @@
 -(void)hideAdBanner;
 
 -(void)initAdMobView;
+-(void)refreshAdMobBanner:(NSTimer *)timer;
 -(void)showAdMobBanner;
 -(void)hideAdMobBanner;
 

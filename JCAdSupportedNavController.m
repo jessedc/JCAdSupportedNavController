@@ -9,7 +9,8 @@
 #import "JCAdSupportedNavController.h"
 #import "AdMobView.h"
 
-#define ADMOB_PUBLISHER_ID @"PUTHERE"
+#define ADMOB_PUBLISHER_ID @"publisherIdForAd"
+#define ADMOB_REFRESH_RATE 25.0
 
 @implementation JCAdSupportedNavController
 @synthesize adView,adMobView,adBannerIsVisible,adMobBannerIsVisible;
@@ -26,7 +27,7 @@
 	}else {
 		[self initAdMobView];
 	}
-
+		
 	self.adBannerIsVisible = NO;
 	self.adMobBannerIsVisible = NO;
 	
@@ -151,11 +152,19 @@
 	self.adMobView = [AdMobView requestAdWithDelegate:self];
 	self.adMobView.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
 }
+-(void)refreshAdMobBanner:(NSTimer *)timer{
+	if (self.adMobView == nil) {
+		[timer invalidate];
+	}else {
+		DLog(@"AdMob: Requesting fresh Ad");
+		[self.adMobView requestFreshAd];
+	}
+}
 
 #pragma mark AdMobDelegate methods
 
 - (NSString *)publisherIdForAd:(AdMobView *)adView {
-	return ADMOB_PUBLISHER_ID; // this should be prefilled; if not, get it from www.admob.com
+	return ADMOB_PUBLISHER_ID;
 }
 
 - (UIViewController *)currentViewControllerForAd:(AdMobView *)adView {
@@ -174,10 +183,10 @@
 	return [UIColor colorWithRed:1 green:1 blue:1 alpha:1]; // this should be prefilled; if not, provide a UIColor
 }
  
- - (NSArray *)testDevices {
-	 return [NSArray arrayWithObjects: @"896ed77d539d86c8b53cddc9005b81c56c1b2681", //Jesse's iPhone4
-			 nil];
- }
+// - (NSArray *)testDevices {
+//	 return [NSArray arrayWithObjects: @"TestDeviceDeviceUID", //Device ID
+//			 nil];
+// }
  
 // - (NSString *)testAdActionForAd:(AdMobView *)adMobView {
 //	 DLog(@"see AdMobDelegateProtocol.h for a listing of valid values here");
@@ -191,12 +200,23 @@
 	DLog(@"AdMob: Did receive ad");
 	// get the view frame
 	[self showAdMobBanner];
+	
+	NSTimer *timer = [NSTimer timerWithTimeInterval:ADMOB_REFRESH_RATE target:self selector:@selector(refreshAdMobBanner:) userInfo:nil repeats:YES];
+	[[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];	
+}
+
+- (void)didReceiveRefreshedAd:(AdMobView *)adView{
+	DLog(@"AdMob: Did recieve refreshed ad");
 }
 
 // Sent when an ad request failed to load an ad
 - (void)didFailToReceiveAd:(AdMobView *)adView {
-	DLog(@"AdMob: Did fail to receive ad");
+	DLog(@"AdMob: Failed to receive ad");
 	[self hideAdMobBanner];
+}
+- (void)didFailToReceiveRefreshedAd:(AdMobView *)adView{
+	DLog(@"AdMob: Failed to recieve refreshed ad");
+	
 }
 
 -(void)showAdMobBanner{
@@ -242,7 +262,7 @@
 		adMobView = nil;
 
 		//The app will attempt to re-initialise an adMob view in 10 seconds.
-		[NSTimer timerWithTimeInterval:10.0 target:self selector:@selector(initAdMobView) userInfo:nil repeats:NO];
+		[NSTimer timerWithTimeInterval:15.0 target:self selector:@selector(initAdMobView) userInfo:nil repeats:NO];
 	}
 }
 

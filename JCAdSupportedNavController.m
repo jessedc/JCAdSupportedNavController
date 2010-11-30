@@ -20,18 +20,25 @@
 
 - (void)loadView {
 	[super loadView];
+
+	adBannerIsVisible = NO;
+	adMobBannerIsVisible = NO;
 	
-	// iOS 3.x will not show iAds at all
-	if (NSClassFromString(@"ADBannerView")) {
-		[self initAdBannerView];
-	}else {
-		[self initAdMobView];
-	}
-		
-	self.adBannerIsVisible = NO;
-	self.adMobBannerIsVisible = NO;
-	
+	if ([(CityMetroAppDelegate *)[[UIApplication sharedApplication] delegate] shouldDisplayAds]){
+		// iOS 3.x will not show iAds at all
+		if (NSClassFromString(@"ADBannerView")) {
+			[self initAdBannerView];
+		}else {
+			[self initAdMobView];
+		}
+	}	
 }
+/*
+ // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+ - (void)viewDidLoad {
+ [super viewDidLoad];
+ }
+ */
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -42,12 +49,14 @@
 
 - (void)viewDidUnload {
 	[adView release];
+	[adMobView release];
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
 	[adView release];
+	[adMobView release];
     [super dealloc];
 }
 
@@ -58,7 +67,7 @@
 -(void)initAdBannerView {
 
 	// Create the adView and put off the end of the view's bounds.
-	adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, 0, 0)]; 
+	adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, 0, 0)]; 
 	
 	// ADBannerContentSizeIdentifier320x50 and ADBannerContentSizeIdentifier480x32 are deprecated in iOS 4.2
 	// To make things work into the future, we will use them if we notice they're available.
@@ -85,12 +94,13 @@
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
 	DLog(@"iAd Banner Did Load");
-	
-	if (self.adMobBannerIsVisible) {
-		[self hideAdMobBanner];
-	}
-	
 	[self showAdBanner];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+	DLog(@"iAd Banner did fail %@",[error userInfo]);
+	[self hideAdBanner];
 }
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
 {
@@ -101,63 +111,75 @@
     }
     return shouldExecuteAction;
 }
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner{
-	DLog(@"iAd Banner Did Finish Load");
-}
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-	DLog(@"iAd Banner did fail %@",[error userInfo]);
-	[self hideAdBanner];
-	[self initAdMobView];
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+	DLog(@"iAd Banner Did Finish Action	");
 }
 
--(void)showAdBanner{
+-(void)showAdBanner
+{
     if (!self.adBannerIsVisible)
     {
+		// Hide AdMob Banner First
+		[self hideAdMobBanner];
+		
+		DLog(@"iAd: Showing AdBanner");
 		UIView *contentView = [self.view.subviews objectAtIndex:0];
         CGRect originalViewFrame = contentView.frame;
 		CGRect adFrame = self.adView.frame;
 		
-		adFrame.origin.y = self.view.frame.size.height - adFrame.size.height;
-		originalViewFrame.size.height = self.view.frame.size.height - adFrame.size.height;
+		//DLog(@"Frame: %@",[NSValue valueWithCGRect:originalViewFrame]);
+		//DLog(@"Self.view.Frame: %@",[NSValue valueWithCGRect:self.view.frame]);
+		
+		adFrame.origin.y = originalViewFrame.size.height - adFrame.size.height;
+		originalViewFrame.size.height = self.view.bounds.size.height - adFrame.size.height;
+		
+		self.adBannerIsVisible = YES;
 		
 		[UIView beginAnimations:@"animateAdBannerOn" context:NULL];
         adView.frame = adFrame;
 		contentView.frame = originalViewFrame;
 		[UIView commitAnimations];
-        self.adBannerIsVisible = YES;
     }	
 }
--(void)hideAdBanner{
+-(void)hideAdBanner
+{
 	if (self.adBannerIsVisible) 
 	{
 		UIView *contentView = [self.view.subviews objectAtIndex:0];
         CGRect originalViewFrame = contentView.frame;
 		CGRect adFrame = adView.frame;
 		
-		originalViewFrame.size.height = self.view.frame.size.height; 
-		adFrame.origin.y = self.view.frame.size.height;
-		
+		originalViewFrame.size.height = self.view.bounds.size.height; 
+		adFrame.origin.y = originalViewFrame.size.height;
+
+		self.adBannerIsVisible = NO;
 		[UIView beginAnimations:@"animateAdBannerOn" context:NULL];
-        adView.frame = adFrame;
-		contentView.frame = originalViewFrame;
-		
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:@selector(initAdMobView)];
+			adView.frame = adFrame;
+			contentView.frame = originalViewFrame;
 		[UIView commitAnimations];
-        self.adBannerIsVisible = NO;
 	}
 }
 
 #pragma mark -
 #pragma mark AdMob Functions
 -(void)initAdMobView{
-	self.adMobView = [AdMobView requestAdWithDelegate:self];
-	self.adMobView.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
+	if (!self.adBannerIsVisible && !self.adMobBannerIsVisible) {
+		DLog(@"AdMob: init AdMob (Nothing is visible)");
+		self.adMobView = [AdMobView requestAdWithDelegate:self];
+		self.adMobView.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
+		self.adMobBannerIsVisible = NO;
+	}
 }
 -(void)refreshAdMobBanner:(NSTimer *)timer{
-	if (self.adMobView == nil) {
-		[timer invalidate];
-	}else {
+	// If the iAd Banner is up, stop this timer
+	if (self.adMobBannerIsVisible) {
 		DLog(@"AdMob: Requesting fresh Ad");
 		[self.adMobView requestFreshAd];
+	}else {
+		[timer invalidate];
 	}
 }
 
@@ -198,37 +220,57 @@
 // the ad view to the hierachy.
 - (void)didReceiveAd:(AdMobView *)adView {
 	DLog(@"AdMob: Did receive ad");
-	// get the view frame
-	[self showAdMobBanner];
-	
-	NSTimer *timer = [NSTimer timerWithTimeInterval:ADMOB_REFRESH_RATE target:self selector:@selector(refreshAdMobBanner:) userInfo:nil repeats:YES];
-	[[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];	
+
+	// Sometimes iAd can jump back while an AdMob request is still on it's way back.
+	// Check to make sure that iAd hasn't come back ontop since the request was sent.
+	if (self.adBannerIsVisible) {
+		[self hideAdMobBanner];
+	}else{
+		[self showAdMobBanner];
+	}
 }
 
-- (void)didReceiveRefreshedAd:(AdMobView *)adView{
+- (void)didReceiveRefreshedAd:(AdMobView *)anAdMobView{
 	DLog(@"AdMob: Did recieve refreshed ad");
+	
+	// Interface rotation seems to put the 'flip' transition off when it flips for a new ad.
+	// Resetting the frame at this point seems to keep the ad in the center
+	
+	CGRect adMobFrame = anAdMobView.frame;
+	adMobFrame.origin.x = (self.view.bounds.size.width - adMobFrame.size.width) / 2;
+	anAdMobView.frame = adMobFrame;
 }
 
 // Sent when an ad request failed to load an ad
 - (void)didFailToReceiveAd:(AdMobView *)adView {
 	DLog(@"AdMob: Failed to receive ad");
 	[self hideAdMobBanner];
+	
+	//The app will attempt to re-initialise an adMob view in 15 seconds.
+	NSTimer *timer = [NSTimer timerWithTimeInterval:15.0 target:self selector:@selector(initAdMobView) userInfo:nil repeats:NO];
+	[[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];	
 }
 - (void)didFailToReceiveRefreshedAd:(AdMobView *)adView{
 	DLog(@"AdMob: Failed to recieve refreshed ad");
 	
 }
 
--(void)showAdMobBanner{
-    if (!self.adMobBannerIsVisible && !self.adBannerIsVisible)
-    {
+-(void)showAdMobBanner
+{
+	if (self.adBannerIsVisible) {
+		[self hideAdMobBanner];
+	}else if (!self.adMobBannerIsVisible){
+		DLog(@"AdMob: Showing an AdMobBanner");
 		UIView *contentView = [self.view.subviews objectAtIndex:0];
         CGRect originalViewFrame = contentView.frame;
 
-		adMobView.frame = CGRectMake(0, self.view.frame.size.height-48, self.view.frame.size.width, 48);
+		DLog(@"Frame: %@",[NSValue valueWithCGRect:originalViewFrame]);
+		DLog(@"Self.view.Frame: %@",[NSValue valueWithCGRect:self.view.frame]);
+		
+		adMobView.frame = CGRectMake(0, originalViewFrame.size.height-48, originalViewFrame.size.width, 48);
 		CGRect adFrame = adMobView.frame;
 		
-		originalViewFrame.size.height = self.view.frame.size.height - adFrame.size.height;
+		originalViewFrame.size.height = self.view.bounds.size.height - adFrame.size.height;
 		
 		[self.view addSubview:adMobView];
 		
@@ -239,51 +281,45 @@
 		contentView.frame = originalViewFrame;
 		//[UIView commitAnimations];
         self.adMobBannerIsVisible = YES;
+		
+		NSTimer *timer = [NSTimer timerWithTimeInterval:ADMOB_REFRESH_RATE target:self selector:@selector(refreshAdMobBanner:) userInfo:nil repeats:YES];
+		[[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     }
 }
 -(void)hideAdMobBanner{
 	if (self.adMobBannerIsVisible) {
+		DLog(@"AdMob: Hiding Visible AdMobBanner");
 		UIView *contentView = [self.view.subviews objectAtIndex:0];
         CGRect originalViewFrame = contentView.frame;
-		CGRect adFrame = adMobView.frame;
+		//CGRect adFrame = adMobView.frame;
 		
-		originalViewFrame.size.height = self.view.frame.size.height; 
-		adFrame.origin.y = self.view.frame.size.height;
+		originalViewFrame.size.height = self.view.bounds.size.height; 
+		//adFrame.origin.y = self.view.frame.size.height;
 		
 		//[UIView beginAnimations:@"animateAdMobBannerOff" context:NULL];
         //adMobAd.frame = adFrame;
 		contentView.frame = originalViewFrame;
 		//[UIView commitAnimations];
-		
-        self.adMobBannerIsVisible = NO;
+
+		self.adMobBannerIsVisible = NO;
 		
 		[adMobView removeFromSuperview];
 		[adMobView release];
 		adMobView = nil;
-
-		//The app will attempt to re-initialise an adMob view in 10 seconds.
-		[NSTimer timerWithTimeInterval:15.0 target:self selector:@selector(initAdMobView) userInfo:nil repeats:NO];
 	}
 }
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
 
 #pragma mark -
 #pragma mark Rotation
 
 // Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
-{
-    return YES;
-}
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+//{
+//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//}
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration 
 {
-	if (self.adBannerIsVisible) {
+	if (NSClassFromString(@"ADBannerView")) {
 		if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)){
 			if (&ADBannerContentSizeIdentifierLandscape != nil) {
 				self.adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
